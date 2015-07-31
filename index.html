@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+ 
+<script src="thunk.js"></script>  
+<script src="auto_run.js"></script>
+<script>
+function fn1(a,b,callback) {
+	var sum = a+b;
+	callback(sum)
+}
+function fn2(c,d,callback) {
+	var s = c-d;
+	callback(s)
+}
+
+var f1 = thunk(fn1);
+var f2 = thunk(fn2);
+function *g() {
+	var y = yield f1(1,2);
+	var x = yield f2(3,4);
+	console.log(y, x);
+}
+
+autoRun(g);
+
+</script>  
+</body>
+</html>
